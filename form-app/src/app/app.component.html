@@ -1,0 +1,115 @@
+<div class="container">
+
+
+    <!-- <div> 
+        <div>App Counter: {{ appCounterService.counter }}</div>
+    <button (click)="appCounterService.increase()">+</button>
+    <button (click)="appCounterService.decrease()">-</button>
+    </div>
+    
+    
+    
+    <div>
+        <div>local Counter: {{ localService.count }}</div>
+       
+    <button (click)="localService.increase()">+</button>
+    <button (click)="localService.decrease()">-</button>
+    </div> -->
+    
+    <div class="container">
+        <form class="card" [formGroup]="form" (ngSubmit)="submit()">
+          <h1>Angular Forms</h1>
+      
+          <div class="form-control">
+            <label>Email</label>
+            <input type="text" placeholder="Email" formControlName="emailo">
+    
+            <!-- <pre>{{ form.get('emailo')?.errors | json }}</pre> -->
+                <div 
+                *ngIf="form.get('emailo')?.invalid && form.get('emailo')?.touched"
+                class="validation"
+                >
+                    <small
+                    *ngIf="form.get('emailo')?.errors?.['required']"  
+                    >This field is required</small>
+                    <small
+                    *ngIf="form.get('emailo')?.errors?.['email']"
+                    >please, enter your email address</small>
+                    <small
+                    *ngIf="form.get('emailo')?.errors?.['restrictedEmail']"
+                    > the Email address {{ form.get('emailo')?.value }} is forbidden</small>
+                </div>
+          </div>
+      
+          <div class="form-control">
+            <label>Password</label>
+            <input type="password" placeholder="Password" formControlName="password">
+            
+            <div 
+            *ngIf="form.get('password')?.invalid && form.get('password')?.touched"
+            class="validation"
+            >
+              <small
+              *ngIf="form.get('password')?.errors?.['required']"  
+              > This field cannot be empty</small>
+              <small
+              *ngIf="form.get('password')?.errors?.['minlength']"
+              >This field must contain at least {{ form.get('password')?.errors?.['minlength'].requiredLength}} digits,
+            now it is {{ form.get('password')?.errors?.['minlength'].actualLength}}</small>
+            
+            </div>
+          </div>
+      
+          <div class="card inside" formGroupName="address">
+            <h2>Address</h2>
+      
+            <div class="form-control">
+              <label>Country</label>
+      
+              <select formControlName="country">
+                <option value="ua">Ukraine</option>
+                <option value="de">Germany</option>
+                <option value="by">Belarus</option>
+              </select>
+            </div>
+      
+            <div class="form-control">
+              <input type="text" formControlName="city">
+            </div>
+      
+            <button class="btn" type="button" (click)="setCapital()">Select the Capital</button>
+          </div>
+      
+          <div class="card inside">
+            <h2>Your skills</h2>
+            <button class="btn" type="button" (click)="addSkill()">Add skill</button>
+            <div 
+            class="form-control"
+            *ngFor="let control of "
+            >
+    
+    
+    
+    
+    
+    
+    
+    
+            
+              <label></label>
+              <input type="text">
+            </div>
+          </div>
+      
+          <button class="btn" type="submit" [disabled]="form.invalid" >Submit</button>
+      
+        </form>
+      </div>
+      
+      
+    
+    </div>
+    
+    <!-- 
+    *ngFor="let control of form.get('skills')?.controls; let idx = index" -->
+    <!-- [disabled]="form.valid" -->
